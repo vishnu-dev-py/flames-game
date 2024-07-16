@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <title>90s Kids Flames</title>
+</head>
+<body>
+<div class="out-line">
+    <div class="h">
+        <h1 class="h-txt">Welcome To 90s World...</h1>
+    </div>
+    <div class="n1"><label for="name1">1st Name:</label>
+    <input id="name1" type="text" placeholder="Enter 1st Name"><br><br></div>
+    <div class="n2"><label for="name2">2nd Name:</label>
+    <input id="name2" type="text" placeholder="Enter 2nd Name"><br><br></div>
+
+    <div class="btn">
+        <button onclick="check()">Check Flames</button>
+    </div>
+    <div class="popup" id="popup">
+        <img src="assets/img/90s_games.jpg">
+        <h1 class="res" id="res"></h1>
+        <button onclick="closePopup()" class="ok-btn">OK</button>
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>
+
+<script>
+
+    function check(){
+        var name1 = document.getElementById('name1').value
+        var name2 = document.getElementById('name2').value
+        let popup = document.getElementById('popup')
+        // const lst = [].push(name1,name2)
+        console.log("Check Function")
+        if((typeof name1 ==="string") && (typeof name2 ==="string")){
+            var option = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name1: name1.toLowerCase(),
+                name2: name2.toLowerCase(),
+
+            })
+        }
+        fetch('http://127.0.0.1:8000/check/',option)
+            .then(response => response.json())
+            .then(data =>{
+                document.getElementById("res").innerHTML=data
+                console.log(data)
+
+            } )
+        popup.classList.add("open-popup")
+        clear_form()
+
+    }
+        else{
+            document.getElementById("res").innerHTML="Invalid Input...! Please Enter Name...!"
+            popup.classList.add("open-popup")
+            clear_form()
+        }
+        }
+
+
+
+    function clear_form() {
+        document.getElementById('name1').value = ""
+        document.getElementById('name2').value = ""
+    }
+    function closePopup(){
+        popup.classList.remove("open-popup")
+    }
+
+
+</script>
