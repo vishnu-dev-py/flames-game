@@ -7,7 +7,9 @@ app = FastAPI()
 
 origins = [
     "http://127.0.0.1:8000",
-    "http://localhost:63342"
+    "http://localhost:63342",
+    "https://flames-game-api.onrender.com"
+
 ]
 
 app.add_middleware(CORSMiddleware, allow_origins =origins, allow_methods = ["*"])
