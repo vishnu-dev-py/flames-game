@@ -8,7 +8,7 @@ app = FastAPI()
 origins = [
     "http://127.0.0.1:8000",
     "http://localhost:63342",
-    "https://flames-game-api.onrender.com"
+    "https://flames-game.onrender.com"
 
 ]
 
